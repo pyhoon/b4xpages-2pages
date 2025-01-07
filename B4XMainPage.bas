@@ -25,9 +25,7 @@ Private Sub B4XPage_Created (Root1 As B4XView)
 	Root = Root1
 	Root.LoadLayout("MainPage")
 	B4XPages.SetTitle(Me, "Main Title")
-	
-	Page2.Initialize
-	B4XPages.AddPage("NewPage", Page2)
+	B4XPages.AddPage("NewPage", Page2.Initialize)
 End Sub
 
 Private Sub BtnNewPage_Click

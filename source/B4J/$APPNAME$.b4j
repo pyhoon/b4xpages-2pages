@@ -9,11 +9,11 @@ Library1=jcore
 Library2=jfx
 Library3=b4xpages
 Module1=|relative|..\B4XMainPage
-Module2=|relative|..\NewPage
+Module2=|relative|..\Page2
 NumberOfFiles=2
 NumberOfLibraries=3
 NumberOfModules=2
-Version=10
+Version=10.3
 @EndOfDesignText@
 #Region Project Attributes 
 	#MainFormWidth: 600

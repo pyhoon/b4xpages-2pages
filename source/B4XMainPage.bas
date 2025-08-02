@@ -14,20 +14,30 @@ Version=9.85
 Sub Class_Globals
 	Private Root As B4XView
 	Private xui As XUI
-	Public Page2 As NewPage
+	Public PageA As Page2
+	Public PageB As Page2
 End Sub
 
 Public Sub Initialize
-'	B4XPages.GetManager.LogEvents = True
+	B4XPages.GetManager.LogEvents = True
 End Sub
 
 Private Sub B4XPage_Created (Root1 As B4XView)
 	Root = Root1
 	Root.LoadLayout("MainPage")
 	B4XPages.SetTitle(Me, "Main Title")
-	B4XPages.AddPage("NewPage", Page2.Initialize)
+	B4XPages.AddPage("A", PageA.Initialize)
+	B4XPages.AddPage("B", PageB.Initialize)
 End Sub
 
 Private Sub BtnNewPage_Click
-	B4XPages.ShowPage("NewPage")
+'	B4XPages.ShowPage("Page 2")
+End Sub
+
+Private Sub BtnShowPage2A_Click
+	B4XPages.ShowPage("A")
+End Sub
+
+Private Sub BtnShowPage2B_Click
+	B4XPages.ShowPage("B")
 End Sub

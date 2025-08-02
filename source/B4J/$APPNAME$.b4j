@@ -1,7 +1,7 @@
 ﻿AppType=JavaFX
 Build1=Default,b4j.example
 File1=MainPage.bjl
-File2=NewPage.bjl
+File2=Page2.bjl
 FileGroup1=Default Group
 FileGroup2=Default Group
 Group=App
@@ -9,7 +9,7 @@ Library1=jcore
 Library2=jfx
 Library3=b4xpages
 Module1=|relative|..\B4XMainPage
-Module2=|relative|..\Page2
+Module2=|relative|..\B4XPage2
 NumberOfFiles=2
 NumberOfLibraries=3
 NumberOfModules=2

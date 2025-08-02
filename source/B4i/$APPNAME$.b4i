@@ -1,21 +1,20 @@
 ﻿Build1=Default,b4i.example
 File1=MainPage.bil
-File2=NewPage.bil
+File2=Page2.bil
 FileGroup1=Default Group
 FileGroup2=Default Group
 Group=App
 Library1=icore
 Library2=b4xpages
 Module1=|relative|..\B4XMainPage
-Module2=|relative|..\NewPage
+Module2=|relative|..\B4XPage2
 NumberOfFiles=2
 NumberOfLibraries=2
 NumberOfModules=2
-Version=8.51
+Version=8.8
 @EndOfDesignText@
-'Code module
-#Region  Project Attributes 
-	#ApplicationLabel: B4X
+#Region Project Attributes 
+	#ApplicationLabel: App
 	#Version: 1.0.0 
 	'Orientation possible values: Portrait, LandscapeLeft, LandscapeRight and PortraitUpsideDown
 	#iPhoneOrientations: Portrait, LandscapeLeft, LandscapeRight
@@ -23,12 +22,19 @@ Version=8.51
 	#Target: iPhone, iPad
 	#ATSEnabled: True
 	#MinVersion: 11
+	#If RELEASE
+	#CertificateFile: ios_distribution.cer
+	#ProvisionFile: Distribution.mobileprovision
+	'#ProvisionFile: Store.mobileprovision
+	#Else
+	#CertificateFile: ios_development.cer
+	#ProvisionFile: Development.mobileprovision
+	#End If	
 #End Region
 
 Sub Process_Globals
 	Public App As Application
 	Public NavControl As NavigationController
-
 End Sub
 
 Private Sub Application_Start (Nav As NavigationController)

@@ -5,39 +5,54 @@ Type=Class
 Version=9.85
 @EndOfDesignText@
 #Region Shared Files
+#Macro: Title, Export, ide://run?File=%B4X%\Zipper.jar&Args=%PROJECT_NAME%.zip
+#Macro: Title, GitHub, ide://run?file=%WINDIR%\System32\cmd.exe&Args=/c&Args=github&Args=..\..\
+#Macro: Title, Sync Files, ide://run?file=%WINDIR%\System32\Robocopy.exe&args=..\..\Shared+Files&args=..\Files&FilesSync=True
+'#Macro: Title, JsonLayouts folder, ide://run?File=%WINDIR%\explorer.exe&Args=%PROJECT%\JsonLayouts
+'#Macro: After Save, Sync Layouts, ide://run?File=%ADDITIONAL%\..\B4X\JsonLayouts.jar&Args=%PROJECT%&Args=%PROJECT_NAME%
 '#CustomBuildAction: folders ready, %WINDIR%\System32\Robocopy.exe,"..\..\Shared Files" "..\Files"
-'Ctrl + click to sync files: ide://run?file=%WINDIR%\System32\Robocopy.exe&args=..\..\Shared+Files&args=..\Files&FilesSync=True
 #End Region
-
-'Ctrl + click to export as zip: ide://run?File=%B4X%\Zipper.jar&Args=%PROJECT_NAME%.zip
 
 Sub Class_Globals
 	Private Root As B4XView
 	Private xui As XUI
-	Public PageA As Page2
-	Public PageB As Page2
+	Public Page2 As B4XPage2
 End Sub
 
 Public Sub Initialize
-	B4XPages.GetManager.LogEvents = True
+'	B4XPages.GetManager.LogEvents = True
 End Sub
 
 Private Sub B4XPage_Created (Root1 As B4XView)
 	Root = Root1
 	Root.LoadLayout("MainPage")
-	B4XPages.SetTitle(Me, "Main Title")
-	B4XPages.AddPage("A", PageA.Initialize)
-	B4XPages.AddPage("B", PageB.Initialize)
+	B4XPages.SetTitle(Me, "Main Page")
+	B4XPages.AddPage("Page2", Page2.Initialize)
 End Sub
 
-Private Sub BtnNewPage_Click
-'	B4XPages.ShowPage("Page 2")
+Private Sub BtnOpenPage2_Click
+	B4XPages.ShowPage("Page2")
 End Sub
 
-Private Sub BtnShowPage2A_Click
-	B4XPages.ShowPage("A")
+#If B4A
+Private Sub B4XPage_KeyPress (KeyCode As Int) As Boolean 'ignore
+	Select KeyCode
+		Case KeyCodes.KEYCODE_BACK
+			'code to handle back key
+		Case KeyCodes.KEYCODE_VOLUME_DOWN, KeyCodes.KEYCODE_VOLUME_UP
+			'code to handle volume keys
+		Case KeyCodes.KEYCODE_MEDIA_PLAY_PAUSE
+			'code to handle media button
+		Case Else
+			Return False 'Pass to Android System
+	End Select
 End Sub
 
-Private Sub BtnShowPage2B_Click
-	B4XPages.ShowPage("B")
+Private Sub B4XPage_CloseRequest As ResumableSub
+	'If Drawer.LeftOpen Then
+	'	Drawer.LeftOpen = False
+	'	Return False
+	'End If
+	Return True
 End Sub
+#End If

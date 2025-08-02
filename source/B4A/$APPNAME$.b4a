@@ -1,22 +1,22 @@
 ﻿Build1=Default,b4a.example
 File1=MainPage.bal
-File2=NewPage.bal
+File2=Page2.bal
 FileGroup1=Default Group
 FileGroup2=Default Group
 Group=App
 Library1=core
 Library2=b4xpages
-ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="35"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
 Module1=|relative|..\B4XMainPage
-Module2=|relative|..\NewPage
+Module2=|relative|..\B4XPage2
 Module3=Starter
 NumberOfFiles=2
 NumberOfLibraries=2
 NumberOfModules=3
-Version=12.8
+Version=13.4
 @EndOfDesignText@
-#Region  Project Attributes 
-	#ApplicationLabel: B4X
+#Region Project Attributes 
+	#ApplicationLabel: App
 	#VersionCode: 1
 	#VersionName: 
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
@@ -54,7 +54,11 @@ Sub Activity_ActionBarHomeClick
 End Sub
 
 Sub Activity_KeyPress (KeyCode As Int) As Boolean
-	Return B4XPages.Delegate.Activity_KeyPress(KeyCode)
+	If KeyCode = KeyCodes.KEYCODE_BACK Then
+		Return B4XPages.Delegate.Activity_KeyPress(KeyCode)
+	End If
+	B4XPages.GetManager.RaiseEvent(B4XPages.GetManager.GetTopPage, "B4XPage_KeyPress", Array(KeyCode))
+	Return False
 End Sub
 
 Sub Activity_Resume
@@ -77,9 +81,6 @@ End Sub
 public boolean _onCreateOptionsMenu(android.view.Menu menu) {
 	 processBA.raiseEvent(null, "create_menu", menu);
 	 return true;
-	
 }
 #End If
 #End Region
-
-'Program code should go into B4XMainPage and other pages.
